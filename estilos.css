@@ -8,6 +8,12 @@
     object-fit: cover;
 }
 
+#produtos img {
+     width: 100%;
+    height: 490px;
+    object-fit: cover;
+}
+
 .container {
     margin: 1em 0;
 }
