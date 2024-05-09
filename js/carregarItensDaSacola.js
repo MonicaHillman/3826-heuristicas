@@ -4,6 +4,8 @@ export function carregarItensDaSacola() {
   const sacola = JSON.parse(localStorage.getItem("sacola")) || [];
   const listaSacola = document.getElementById("sacola");
 
+  console.log(sacola)
+
   sacola.forEach((item) => {
     const listItem = document.createElement("li");
     listItem.className = "item-list";

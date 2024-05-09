@@ -1,5 +1,15 @@
 import { adicionarProdutoAoLocalStorage } from "./adicionarProdutoAoLocalStorage.js";
 
+
+function adicionarProduto(camiseta) {
+  adicionarProdutoAoLocalStorage({
+    nome: camiseta.nome,
+    preco: camiseta.preco,
+    descricao: camiseta.descricao,
+    imagens: camiseta.imagens
+  });
+}
+
 // Função para imprimir todas camisetas
 export function imprimirCamisetas(camisetas) {
   const row = document.querySelector("#produtos");
@@ -25,14 +35,14 @@ export function imprimirCamisetas(camisetas) {
         <p class="card-text">${camiseta.descricao}</p>
         <p class="fw-bold">${camiseta.preco}</p>
         <button type="button" class="btn btn-primary botao-lilas rounded-0 border-0" data-bs-toggle="modal" data-bs-target="#modal${camiseta.nome.replace(
-          /\s+/g,
-          "-"
-        )}">Ver mais</button>
+      /\s+/g,
+      "-"
+    )}">Ver mais</button>
       </div>
     `;
 
-      card.innerHTML = images + cardBody;
-      
+    card.innerHTML = images + cardBody;
+
 
     const modalContent = `
       <div class="modal-content">
@@ -40,16 +50,15 @@ export function imprimirCamisetas(camisetas) {
           <div class="modal-header-icon">
             <img src="assets/check-circle.svg">
             <h1 class="modal-title fs-5" id="modalLabel${camiseta.nome.replace(
-              /\s+/g,
-              "-"
-            )}">Confira detalhes sobre o produto</h1>
+      /\s+/g,
+      "-"
+    )}">Confira detalhes sobre o produto</h1>
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <img class="modal-imagem" src="${camiseta.imagens.desktop}" alt="${
-      camiseta.nome
-    }">
+          <img class="modal-imagem" src="${camiseta.imagens.desktop}" alt="${camiseta.nome
+      }">
           <div>
             <h3>${camiseta.nome}</h3>
             <p class="modal-description">${camiseta.descricao}</p>
@@ -108,7 +117,8 @@ export function imprimirCamisetas(camisetas) {
           </div>
         </div>
 <div class="modal-footer">
-  <button type="button" class="btn botao-lilas" onclick="adicionarProdutoAoLocalStorage(${camiseta})">Adicionar à sacola</button>
+
+<button type="button" class="btn botao-lilas" id="adicionar-btn-${camiseta.nome.replace(/\s+/g, "-")}">Adicionar à sacola</button>
 </div>
 
 
@@ -123,8 +133,12 @@ export function imprimirCamisetas(camisetas) {
         </div>
       </div>
     `;
-      
+
 
     document.body.insertAdjacentHTML("beforeend", modal);
+
+    // Agora, configure o evento de clique para o botão
+    const botao = document.querySelector(`#adicionar-btn-${camiseta.nome.replace(/\s+/g, "-")}`);
+    botao.addEventListener("click", () => adicionarProduto(camiseta));
   });
 }

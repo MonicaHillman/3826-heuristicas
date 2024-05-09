@@ -1,5 +1,14 @@
 import { adicionarProdutoAoLocalStorage } from "./adicionarProdutoAoLocalStorage.js";
 
+function adicionarProduto(camiseta) {
+  adicionarProdutoAoLocalStorage({
+    nome: camiseta.nome,
+    preco: camiseta.preco,
+    descricao: camiseta.descricao,
+    imagens: camiseta.imagens
+  });
+}
+
 export function imprimirUmDeCadaCategoria(produtos) {
   const row = document.querySelector("#produtos");
 
@@ -42,9 +51,8 @@ export function imprimirUmDeCadaCategoria(produtos) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <img class="modal-imagem" src="${produto.imagens.desktop}" alt="${
-        produto.nome
-      }">
+            <img class="modal-imagem" src="${produto.imagens.desktop}" alt="${produto.nome
+        }">
             <div>
               <h3>${produto.nome}</h3>
               <p class="modal-description">${produto.descricao}</p>
@@ -103,7 +111,7 @@ export function imprimirUmDeCadaCategoria(produtos) {
             </div>
           </div>
     <div class="modal-footer">
-            <button type="button" class="btn botao-lilas" onclick="${adicionarProdutoAoLocalStorage(JSON.stringify(produto))}">Adicionar à sacola</button>
+            <button type="button" class="btn botao-lilas" id="adicionar-btn-${produto.nome.replace(/\s+/g, "-")}">Adicionar à sacola</button>
           </div>
         </div>
       `;
@@ -117,6 +125,9 @@ export function imprimirUmDeCadaCategoria(produtos) {
       `;
 
       document.body.insertAdjacentHTML("beforeend", modal);
+
+      const botao = document.querySelector(`#adicionar-btn-${produto.nome.replace(/\s+/g, "-")}`);
+      botao.addEventListener("click", () => adicionarProduto(produto));
     }
   }
 
