@@ -1,4 +1,4 @@
-
+import { removerProdutoDoLocalStorage } from "./removerProdutoDoLocalStorage.js"
 // Função para carregar os itens da sacola do localStorage
 export function carregarItensDaSacola() {
   const sacola = JSON.parse(localStorage.getItem("sacola")) || [];
@@ -44,11 +44,10 @@ export function carregarItensDaSacola() {
 
     const deleteButton = listItem.querySelector(".delete");
     deleteButton.addEventListener("click", () => {
-      const confirmacao = confirm("Tem certeza que deseja excluir este item?");
-      if (confirmacao) {
-        listaSacola.removeChild(listItem); // Remove o item da lista visualmente
-        removerProdutoDoLocalStorage(item.nome); // Remove o item do localStorage
-      }
+
+      listaSacola.removeChild(listItem); // Remove o item da lista visualmente
+      removerProdutoDoLocalStorage(item.nome); // Remove o item do localStorage
+      console.log(item.nome)
     });
 
   });

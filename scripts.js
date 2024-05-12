@@ -18,7 +18,7 @@ function isPaginaSacola() {
 }
 
 if (isPaginaSacola()) {
-   carregarItensDaSacola();
+  carregarItensDaSacola();
 }
 
 // Função para imprimir somente as camisetas
@@ -31,7 +31,7 @@ function separarCamisetas(produtos) {
   }
 }
 
-fetch("./produtos.json")
+fetch("./json/produtos.json")
   .then((response) => response.json())
   .then((produtosJSON) => {
     if (isPaginaCamisetas()) {
