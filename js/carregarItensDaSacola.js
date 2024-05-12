@@ -41,5 +41,15 @@ export function carregarItensDaSacola() {
 
     listItem.innerHTML = itemContent;
     listaSacola.appendChild(listItem);
+
+    const deleteButton = listItem.querySelector(".delete");
+    deleteButton.addEventListener("click", () => {
+      const confirmacao = confirm("Tem certeza que deseja excluir este item?");
+      if (confirmacao) {
+        listaSacola.removeChild(listItem); // Remove o item da lista visualmente
+        removerProdutoDoLocalStorage(item.nome); // Remove o item do localStorage
+      }
+    });
+
   });
 }
