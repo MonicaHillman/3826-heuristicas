@@ -131,6 +131,15 @@ form {
     font-size: 10px;
 }
 
+.icon-preto {
+    color: black;
+}
+
+.botao-favorito {
+    background-color: transparent;
+    border: none;
+}
+
 @media(min-width: 768px) {
 
     .div-novidades {
