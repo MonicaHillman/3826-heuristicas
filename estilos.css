@@ -140,6 +140,34 @@ form {
     border: none;
 }
 
+#sugestoes-pesquisa {
+    position: absolute;
+    top: 100%;
+    right: 8%;
+    z-index: 10000;
+    width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.sugestao {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.accordion-button {
+    color: #9353FF;
+}
+
+.accordion-button:not(.collapsed) {
+    color: black;
+    background-color: #9353FF;
+}
+
 @media(min-width: 768px) {
 
     .div-novidades {
