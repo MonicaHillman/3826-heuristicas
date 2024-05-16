@@ -11,9 +11,9 @@ function adicionarProduto(camiseta) {
 
 function atualizarIconeFavorito(botao, favoritar) {
   if (favoritar) {
-    botao.innerHTML = "<i class='bi bi-heart-fill icon-preto'></i>";
+    botao.innerHTML = "<i class='bi bi-heart-fill'></i>";
   } else {
-    botao.innerHTML = "<i class='bi bi-heart icon-preto'></i>";
+    botao.innerHTML = "<i class='bi bi-heart'></i>";
   }
 }
 
