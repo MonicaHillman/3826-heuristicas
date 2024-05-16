@@ -9,14 +9,6 @@ function adicionarProduto(camiseta) {
   });
 }
 
-function atualizarIconeFavorito(botao, favoritar) {
-  if (favoritar) {
-    botao.innerHTML = "<i class='bi bi-heart-fill'></i>"
-  } else {
-    botao.innerHTML = "<i class='bi bi-heart'></i>"
-  }
-}
-
 export function imprimirUmDeCadaCategoria(produtos) {
   const row = document.querySelector("#produtos");
 
@@ -120,7 +112,6 @@ export function imprimirUmDeCadaCategoria(produtos) {
           </div>
     <div class="modal-footer">
             <button type="button" class="btn botao-lilas" id="adicionar-btn-${produto.nome.replace(/\s+/g, "-")}">Adicionar à sacola</button>
-          <button type="button" class="botao-favorito" id="favoritar-btn-${produto.nome.replace(/\s+/g, "-")}"><i class="bi bi-heart"></i></button> 
             </div>
         </div>
       `;
@@ -137,21 +128,6 @@ export function imprimirUmDeCadaCategoria(produtos) {
 
       const botao = document.querySelector(`#adicionar-btn-${produto.nome.replace(/\s+/g, "-")}`);
       botao.addEventListener("click", () => adicionarProduto(produto));
-
-      const botaoFavoritar = document.querySelector(`#favoritar-btn-${produto.nome.replace(/\s+/g, "-")}`);
-      botaoFavoritar.addEventListener("click", function () {
-        const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-        const index = favoritos.indexOf(produto.nome);
-
-        if (index !== -1) {
-          favoritos.splice(index, 1);
-        } else {
-          favoritos.push(produto.nome);
-        }
-
-        localStorage.setItem("favoritos", JSON.stringify(favoritos));
-        atualizarIconeFavorito(this, index === -1)
-      })
     }
   }
 
